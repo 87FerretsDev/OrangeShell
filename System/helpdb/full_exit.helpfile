@@ -1,0 +1,11 @@
+[BASIC]
+Name: "full_exit"
+Syntax: "full_exit"
+Examples: "full_exit"
+
+[DESCRIPTION]
+The remove command requires 0 arguments. It's functionality is to exit the prompt and delete the cached
+files
+
+[ERRORS]
+It gives an error if it cannot delete a cached file.

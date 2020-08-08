@@ -1,0 +1,27 @@
+#    Copyright (C) 2020 OrangeShell Developers
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    See https://www.gnu.org/licenses/ for a copy of the GNU GPL License
+#
+# 	 The ORANGEShell Repo can be found here: https://87ferrets.ml/FTP/OrangeShell/
+# import dependencies
+import os
+import sys
+from __main__ import *
+# change dir to root dir
+os.chdir(ROOT_DIR)
+# clear screen
+os.system('cls')
+# spawn new instance of shell
+os.system('start ' + ROOT_DIR + '\\..\\launch.cmd')
+# exit this shell
+sys.exit(0)

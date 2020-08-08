@@ -1,0 +1,27 @@
+# Sentences beginning with a hashtag ("#") is considered a comment and will be ignored.
+# You may wish to uncomment configuration values if you are certain it wont break your
+# system by putting a hashtag and a space ("# ") in front of them
+
+# Shell configuration file for OrangeShell
+
+# IN THIS SECTION, THE STATES ARE EITHER "YES" or "NO", CAPITILAZATION DOES MATTER!
+# Once the shell is started, the values here are set until you restart the shell.
+
+# check for updates on startup
+CheckForUpdates = YES
+
+# Encrypting your home directory.
+
+# IF YES ==> The command "exit" will auto encrypt your home directory and it will be decrypted
+# at logon automatically if it is already encrypted. The same does NOT apply to the command 
+# "lock"
+
+# IF NO ==> Your home directory will not be touched. NOTE: If your directory is encrypted
+# and you change this option to NO before decrypting, it will stay encrypted.
+
+EncryptHome = YES
+
+# Remove OrangeSH_Cache folder on exit.
+# YES ==> The cache folder will be removed so it will save you space (it respawns on restart of OrangeShell)
+# NO ==> The cache will not be removed, this may be handy if you experience errors often and want to check logs in the cache
+RemoveCache = YES
