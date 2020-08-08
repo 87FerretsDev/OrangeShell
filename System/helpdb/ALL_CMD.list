@@ -7,7 +7,6 @@ contents		|		help contents
 copyfile		|		help copyfile
 delusr			|		help delusr
 exit			|		help exit
-full_exit		|		help full_exit
 getfile			|		help getfile
 lock			|		help lock
 mkusr			|		help mkusr
