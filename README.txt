@@ -57,11 +57,8 @@ extract) so nothing ever leaves your computer.
 
 RETRIEVING FILES FROM HERE:
 
-All files are in .zip format. The latest version of OrangeShell would be in this directory called 
-"OrangeShell-X.X.X.zip" (where X.X.X is the version string) (PRE 2.0.0 releases of OrangeShell will be called
-OrangeOS) where older versions will live in the Old/
-directory. The latest and most updated source code will be in this directory called OrangeShell-src.zip and you
-can use that to make your own fork of OrangeShell.
+Find all releases of OrangeOS in the "Releases" tab of this Repo.
+Direct Link: https://github.com/87FerretsDev/OrangeShell_SRC/releases
 
 Feedback!
 We would LOVE to hear feedback from you! Please tell us about what you like about OrangeShell and what we
