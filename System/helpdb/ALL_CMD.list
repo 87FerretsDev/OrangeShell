@@ -11,7 +11,7 @@ getfile			|		help getfile
 lock			|		help lock
 mkusr			|		help mkusr
 move			|		help move
-reboot			|		help reboot
+logout			|		help logout
 remove			|		help remove
 cd			|		help cd
 update			|		help update

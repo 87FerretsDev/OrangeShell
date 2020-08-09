@@ -30,20 +30,25 @@ except Exception as e:
 	sys.exit(0)
 timeout_seconds = 0
 # ------------------------
-def timeout(tm_value):
+def timeout():
+	global timeout_seconds
+	tm_value = timeout_seconds
 	try:
 		while tm_value > 0:
-			print(Fore.RED + Style.BRIGHT + "\nError: You have had three wrong attempts, please wait " + str(tm_value) +" seconds before retrying... Press CTRL+C now if you wish to exit" + Style.RESET_ALL, end="\r")
+			print(Fore.RED + Style.BRIGHT + "Error: You have had three wrong attempts, please wait " + str(tm_value) +" seconds before retrying... Press CTRL+C now if you wish to exit" + Style.RESET_ALL, end="\r")
 			tm_value -= 1
 			time.sleep(1)
 		if tm_value == 0:
 			print("\n")
-			login()
+			return login()
 	except KeyboardInterrupt:
 		sys.exit(0)
 def loginUsernameProvided(username):		# Used in the LOCK feature, login but with the username already provided (so only ask for pass)
+	global timeout_seconds
+	wrong_attempts = 0
+	ask = True
 	try:
-		while True: # Keep letting user retry until they get it right.
+		while ask: # Keep letting user retry until they get it right.
 			password = getpass.getpass(str(username) + "'s Password? ") # PSW PROMPT
 			print('Validating ...')
 			if os.path.exists(ROOT_DIR + '\\UMS\\' + username + '.shadow'): # Where user passwords are stored, hashed.
@@ -60,10 +65,20 @@ def loginUsernameProvided(username):		# Used in the LOCK feature, login but with
 					return username, password
 				else:
 					time.sleep(5) # deter brute force attacks
-					print('Authentication Error! Try again.')
+					print(Style.BRIGHT + Fore.YELLOW + 'Authentication Error! Try again.' + "\n" + Style.RESET_ALL)
+					wrong_attempts += 1
+					if wrong_attempts == 3:
+						timeout_seconds += 5
+						ask = False
+						return timeout()
 			else:
 				time.sleep(5) # deter brute force attacks
-				print('Authentication Error! Try again.')
+				print(Style.BRIGHT + Fore.YELLOW + 'Authentication Error! Try again.' + "\n" + Style.RESET_ALL)
+				wrong_attempts += 1
+				if wrong_attempts == 3:
+					timeout_seconds += 5
+					ask = False
+					return timeout()
 	except KeyboardInterrupt: # if ctrl+c pressed, exit as tamper alert.
 		print('Authentication Error! This function does not support try-again so exiting...')
 		sys.exit(0)
@@ -72,8 +87,9 @@ def loginUsernameProvided(username):		# Used in the LOCK feature, login but with
 def login():
 	global timeout_seconds
 	wrong_attempts = 0
+	ask = True
 	try:
-		while True:
+		while ask:
 			username = input('Username? ')
 			password = getpass.getpass(str(username) + "'s Password? ")
 			print('Validating ...')
@@ -126,18 +142,22 @@ def login():
 						return username, password
 				else:
 					time.sleep(5)
-					print('Authentication Error! Try again.')
+					print(Style.BRIGHT + Fore.YELLOW + 'Authentication Error! Try again.' + "\n" + Style.RESET_ALL)
 					wrong_attempts += 1
 					if wrong_attempts == 3:
 						timeout_seconds += 5
-						timeout(timeout_seconds)
+						ask = False
+						return timeout()
+
 			else:
 				time.sleep(5)
-				print('Authentication Error! Try again.')
+				print(Style.BRIGHT + Fore.YELLOW + 'Authentication Error! Try again.' + "\n" + Style.RESET_ALL)
 				wrong_attempts += 1
 				if wrong_attempts == 3:
 					timeout_seconds += 5
-					timeout(timeout_seconds)
+					ask = False
+					return timeout()
+
 	except KeyboardInterrupt:
 		print('Authentication Error! This function does not support try-again so exiting...')
 		sys.exit(0)

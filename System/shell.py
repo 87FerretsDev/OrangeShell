@@ -14,50 +14,25 @@
 #
 # 	 The ORANGEShell Repo can be found here: https://87ferrets.ml/FTP/OrangeShell/
 
-# I am caching the results of readConfig() because python is pestering me saying "variable 'needed' is not used" and also it looks cool, you can delete cache, i cant stop the 
-# caching via shellconfig because this IS the function that reads shellconfig, if you hate caching, just remove the cache code and recompile using
-# "python -OO -m py_compile shell.py" and rename the file in _pycache_ to shell.py and replace the source version with the binary version.
-# I know its inconvient, I will look for a way to not use the 'needed' variable, currently using it because I cant have a blank "if" statement
-# The command "exit" will auto-delete the cache as it doesnt matter because it will respawn on every new instance.
-# Cache code has a "# CACHE CODE" comment next to it if you want to remove...
-# Thanks!
-
 import os
 if not os.path.exists(os.getcwd() + '\\OrangeSH_Cache'): # WE NEED THE OrangeSH_Cache FOLDER FOR IMPORTANT THINGS SUCH AS GETFILE PLACING YOUR REQUIRED FILES HERE IF YOU DONT HAVE A HOME DIRECTORY
 	os.system('mkdir OrangeSH_Cache')
 from random import randint
 def readConfig(key):
-	read_cache_number = str(key) + '.' + str(randint(1,100)) # CACHE CODE
-	read_cache = open(os.getcwd() + '\\OrangeSH_Cache\\' + read_cache_number + '.read_data.log', "a+") # CACHE CODE
-	read_cache.write('LookingForKey:"' + str(key) +'", SearchFile:shellconfig.txt, Handler:readConfig(), CacheMethod:ReadCache' + "\n\n") # CACHE CODE
-	read_cache.close() # CACHE CODE
 	configFile = open('shellconfig.txt', "r")
 	for line in configFile:
 		if line.strip() == "":
-			needed = 'NO'
-			read_cache = open(os.getcwd() + '\\OrangeSH_Cache\\' + read_cache_number + '.read_data.log', "a+") # CACHE CODE
-			read_cache.write('Read:"' + str(line.strip()) + '", Needed:' + needed +", Reason:Line_has_no_data, ActionTaken:N/A \n") # CACHE CODE
-			read_cache.close() # CACHE CODE
+			pass
 		else:
 			line_stripped = line.strip()
 			ln_split = line_stripped.split()
 			if ln_split[0] == "#":
-				needed = 'NO'
-				read_cache = open(os.getcwd() + '\\OrangeSH_Cache\\' + read_cache_number + '.read_data.log', "a+") # CACHE CODE
-				read_cache.write('Read:"' + str(line.strip()) + '", Needed:' + needed +", Reason:Comment_Line, ActionTaken:N/A \n") # CACHE CODE
-				read_cache.close() # CACHE CODE
+				pass
 			elif ln_split[0] == key:
-				needed = 'YES'
-				read_cache = open(os.getcwd() + '\\OrangeSH_Cache\\' + read_cache_number + '.read_data.log', "a+") # CACHE CODE
-				read_cache.write('Read:"' + str(line.strip()) + '", Needed:' + needed +", Reason:Correct_Key, ActionTaken:Variable_Returned \n") # CACHE CODE
-				read_cache.write('Action: HALT_CACHE, Start:NOW, End:NOW') # CACHE CODE
-				read_cache.close() # CACHE CODE
 				return ln_split[2]
 			else:
-				needed = 'NO'
-				read_cache = open(os.getcwd() + '\\OrangeSH_Cache\\' + read_cache_number + '.read_data.log', "a+") # CACHE CODE
-				read_cache.write('Read:"' + str(line.strip()) + '", Needed:' + needed +", Reason:Wrong_Key, ActionTaken:N/A \n") # CACHE CODE
-				read_cache.close() # CACHE CODE
+				pass
+
 	configFile.close()
 
 # ---- this section imports dependencies ----
