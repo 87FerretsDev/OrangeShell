@@ -113,5 +113,5 @@ print('Removing backup...')
 os.system('rd /s /q '+ System_Dir + '.BACKUP') # rm backup
 print('Removing temporary archive...')
 os.system('del /f /q System.zip') # rm system.zip file
-print(' ====> You will have to remake your user. This program will exit but please login to the shell using the username "default" and the password "orangeos" and use the command "mkusr" to make a user or "change_pswd" to change the password. This depends on your previous version\'s configurations. <====')
+print(' ====> On the first boot the user setup will launch which will help you set up OrangeOS even further by creating User Accounts that were present in an older installation. <====')
 print('All done!') # done!
