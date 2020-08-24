@@ -8,6 +8,7 @@
 # Once the shell is started, the values here are set until you restart the shell.
 
 # check for updates on startup
+# it is reccommended to check if you want to stay updated on security and feature updates!
 CheckForUpdates = YES
 
 # Encrypting your home directory.
