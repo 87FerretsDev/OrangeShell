@@ -46,16 +46,12 @@ if os.path.isfile('user_setup.pyc'):
 	status = user_setup.setup()
 	sys.exit(0)
 try:
-	UpdateStatus = readConfig('CheckForUpdates') 
+	UpdateStatus = readConfig('CheckForUpdates')
 	EncryptHomeStatus = readConfig('EncryptHome')
 	RemoveCacheStatus = readConfig('RemoveCache')
 	os.system('cls')
 	os.system('title OrangeShell')
 	print('Welcome to OrangeShell v2.0.0')
-	print('[Starting] Verifying OS ...') # verifies that he OS is windows if not give error and exit.
-	if os.name != "nt":
-		print('E: This shell only works in Windows.')
-		sys.exit(0)
 	ROOT_DIR = str(os.getcwd())
 	print('Log in to shell.\n')
 	try:
