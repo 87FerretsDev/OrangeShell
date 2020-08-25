@@ -1,3 +1,7 @@
+PLEASE READ:
+We are going to port OrangeShell ENTIRELY to Linux. If you want to run this in Windows, please enable the Windows Subsystem For Linux, install your favourite distro (I would choose Debian) and install python3 and pip3
+After installing python3 and pip3 just use the bash shell to run "./launch.sh" and the shell should start.
+
 OrangeShell Status: RELEASED V1.5.0
 OrangeShell 2.0.0 is in production! Due release: End of August
 =============================
@@ -22,7 +26,7 @@ Still with us? Good.
 
 SETUP
 
-Setup is partly user dependent. You have to extract the files into any directory (v1.0.0+ has a dynamic root directory) 
+Setup is partly user dependent. You have to extract the files into any directory (v1.0.0+ has a dynamic root directory)
 and have Python3 installed.
 
 If you have a pre 2.0.0 release of OrangeShell (then called OrangeOS) then you must have these python modules installed:
