@@ -38,11 +38,11 @@ no_encrypt() {
 echo "Starting shell..."
 echo -e "\np7zip-full must be installed to use encryption. Checking for that now..."
 
-if ! dpkg-query -l pd7zip-full > /dev/null; then
+if ! dpkg-query -l p7zip-full > /dev/null; then
    echo -e "p7zip-full not found! \nEnter sudo password to install, else press CTRL+C to cancel."
     sudo apt-get install p7zip-full
     echo -e "\nRechecking..."
-    if ! dpkg-query -l pd7zip-full > /dev/null; then
+    if ! dpkg-query -l p7zip-full > /dev/null; then
       no_encrypt
     fi
 else
