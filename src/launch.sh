@@ -4,12 +4,9 @@ echo "Starting shell..."
 echo -e "\nWARNING! This shell was made for Windows so some stuff may not work properly, we try as hard as we can to make this Linux friendly too."
 
 echo -e "\nPreparing aliases..."
-alias pause='read'
+alias pause='read key'
 alias cls='clear'
 alias rd='rm -rf ./'
-alias /s='-s'
-alias /q='-q'
-alias /f='-f'
 alias del='rm'
 
 echo -e "\nShellconfig has to be adapted for Linux, a backup will be saved as shellconfig.txt.old"
