@@ -19,8 +19,7 @@ this README file...
 What is Orange Shell?
 
 OrangeShell is a small python program which provides a commandline
-interface on your Windows PC. This command line interface (in version 0.5.0 at least) is very primitive and
-should not replace your regular cmd.exe or powershell.exe.
+interface.
 
 Still with us? Good.
 
