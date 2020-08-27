@@ -44,7 +44,7 @@ ZIPFILE = pip3 install zipfile
 
 GET PYTHON HERE: https://www.python.org/ftp/python/3.7.8/python-3.7.8-amd64.exe
 
-Once you do that just run launch.cmd and log in to the default user account. Login details:
+Once you do that just run launch.sh and log in to the default user account. Login details:
 
 CREDENTIALS FOR ORANGESHELL 0.5.0 TO 1.5.0:
 Username = default
