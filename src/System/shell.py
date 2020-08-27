@@ -15,8 +15,8 @@
 # 	 The ORANGEShell Repo can be found here: https://87ferrets.ml/FTP/OrangeShell/
 
 import os
-if not os.path.exists(os.getcwd() + '\\OrangeSH_Cache'): # WE NEED THE OrangeSH_Cache FOLDER FOR IMPORTANT THINGS SUCH AS GETFILE PLACING YOUR REQUIRED FILES HERE IF YOU DONT HAVE A HOME DIRECTORY
-	os.system('mkdir OrangeSH_Cache')
+if not os.path.exists(os.getcwd() + '/OrangeSH_Cache'): # WE NEED THE OrangeSH_Cache FOLDER FOR IMPORTANT THINGS SUCH AS GETFILE PLACING YOUR REQUIRED FILES HERE IF YOU DONT HAVE A HOME DIRECTORY
+	os.system('mkdir -p OrangeSH_Cache')
 from random import randint
 def readConfig(key):
 	configFile = open('shellconfig.txt', "r")
@@ -39,7 +39,7 @@ def readConfig(key):
 import importlib
 import sys
 if os.path.isfile('user_setup.pyc'):
-	os.system('cls')
+	os.system('clear')
 	print('Entering user setup ...')
 	print('')
 	user_setup = importlib.import_module('user_setup')
@@ -49,13 +49,12 @@ try:
 	UpdateStatus = readConfig('CheckForUpdates')
 	EncryptHomeStatus = readConfig('EncryptHome')
 	RemoveCacheStatus = readConfig('RemoveCache')
-	os.system('cls')
-	os.system('title OrangeShell')
+	os.system('clear')
 	print('Welcome to OrangeShell v2.0.0')
 	ROOT_DIR = str(os.getcwd())
 	print('Log in to shell.\n')
 	try:
-		sys.path.insert(1, str(ROOT_DIR) + '\\UMS')
+		sys.path.insert(1, str(ROOT_DIR) + '/UMS')
 		login_system = importlib.import_module('login')
 		MASH = login_system.login()
 		UserAcc = MASH[0]
@@ -70,7 +69,7 @@ try:
 	except:
 		print('E: MISSING DEPENDENCY "colorama". PLEASE DOWNLOAD THIS PACKAGE THEN RESTART THE SHELL')
 		sys.exit(0)
-	sys.path.insert(1, str(ROOT_DIR) + '\\Commands') # inserts C:\Orange_OS\System\Commands as path to use later
+	sys.path.insert(1, str(ROOT_DIR) + '/Commands') # inserts C:\Orange_OS\System\Commands as path to use later
 
 	# ---- this section is the main body of the commandline ----
 	def Prompt():
@@ -81,7 +80,7 @@ try:
 			command_Split = list(command_Original_Strip.split(" ")) # turns input into array
 			if command_Split[0] == "": # if no words entered, return
 				Prompt()
-			command_Directory = str(ROOT_DIR) + "\\Commands\\" # where commands are located
+			command_Directory = str(ROOT_DIR) + "/Commands/" # where commands are located
 			command_Loc = command_Directory + command_Split[0] # adds the command itself into the directory var
 			if os.path.exists(command_Loc + '.py'): # adds .py extension and checks if that file exists
 				cmd_Args = " ".join(command_Split[1:]) # IF COMMAND EXISTS: Takes out command name and turns rest of array back to string for arguments
@@ -100,10 +99,10 @@ try:
 			print('^C') # if ctrl+c pressed, do nothing.
 			Prompt()
 	print("")
-	if os.path.isdir(ROOT_DIR + '\\..\\' + UserAcc):
-		os.chdir(ROOT_DIR + '\\..\\' + UserAcc)
+	if os.path.isdir(ROOT_DIR + '/../' + UserAcc):
+		os.chdir(ROOT_DIR + '/../' + UserAcc)
 	else:
-		print(Style.BRIGHT + Fore.YELLOW + 'Warning: Your home directory which should be located at '+ ROOT_DIR + '\\..\\' + UserAcc + ' is non-existent. Some programs may not work with this issue.' + Style.RESET_ALL)
+		print(Style.BRIGHT + Fore.YELLOW + 'Warning: Your home directory which should be located at '+ ROOT_DIR + '/../' + UserAcc + ' is non-existent. Some programs may not work with this issue.' + Style.RESET_ALL)
 	if UpdateStatus == "YES":
 		try:
 			import requests
@@ -126,7 +125,7 @@ try:
 except Exception as e:
 	import os, sys
 	# Kernel Panic
-	os.system('cls') # clear screen
+	os.system('clear') # clear screen
 	print('[Kernel Panic] A fatal exception occured that caused OrangeShell to become very unstable, therefore it has been halted to prevent it from being corrupted.')
 	print('This is most likely caused by missing/corrupted system files, a badly coded script or a misconfigured shellconfig.txt')
 	print('If you see this more than once, please seek help using the details given below')
@@ -135,4 +134,5 @@ except Exception as e:
 	print('The exception was: ' + str(e))
 	print('')
 	print('Kernel Panic Ended. Press any key to exit...')
-	os.system('pause>nul')
+	os.system('read')
+

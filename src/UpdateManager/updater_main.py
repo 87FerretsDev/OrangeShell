@@ -45,26 +45,34 @@ try:
 		print('There is no need for an update! Aborting...')
 		sys.exit(0)
 	else:
-		print('An update is available.') # else an update is available.
+            print('An update is available. You are using OrangeShell v' + str(Version) + ' but an update to OrangeShell v' + str(VERSTRING) + ' is available.') # else an update is available.
 except:
 	print('OrangeOS.Main.UpdateManager.Error.RequestFailedError: The request to the remote server failed. Cannot continue update.') # could not contact server
 	sys.exit()
+
+ynS = input('Do you want to update? y/n: ')
+if ynS == "y" or ynS == "Y":
+    print('Starting the update!')
+else:
+    print('Abort!')
+    sys.exit(0)
+
 print('SKIPPING USER FILES!')
 print('==> Making backup of System...')
 os.chdir('..')
 def copyDir(INPUT, OUTPUT):
 	print('Copying entire source directory "'+str(INPUT)+'" to destination "'+str(OUTPUT)+'"')
-	os.system('xcopy /e /q /Y '+ str(INPUT) +' '+ str(OUTPUT)) 
-System_Dir = os.getcwd() + '\\System'
-copyDir(System_Dir, System_Dir + '.BACKUP\\')	# make entire backup of system
+	os.system('cp -r '+ str(INPUT) +' '+ str(OUTPUT)) 
+System_Dir = os.getcwd() + '/System'
+copyDir(System_Dir, System_Dir + '.BACKUP/')	# make entire backup of system
 print('Verifying backup...')
-if os.path.isdir(System_Dir + '.BACKUP\\'): # verify backup exists
+if os.path.isdir(System_Dir + '.BACKUP/'): # verify backup exists
 	print('Backup Exists!')
 else:
 	print('OrangeOS.Main.UpdateManager.Error.ProcessError: Backup failed. Cannot continue as it is too dangerous.') # else backup doesnt exist, exit!
 	sys.exit()
 print('=> Deleting old system directory...')
-os.system('rd /s /q '+ System_Dir) # delete System directory 
+os.system('rm -rf '+ System_Dir + '/') # delete System directory 
 print('=> Getting new system package from server...') # get pkg from server
 def download_url(url, save_path, chunk_size=128):
     r = requests.get(url, stream=True)
@@ -76,7 +84,7 @@ try:
 except:
 	print('OrangeOS.Main.UpdateManager.Error.RequestFailedError: The request to the remote server failed. Cannot continue update.')# cannot get.
 	print('A fail was detected! Restoring from backup...') # restore backup
-	os.system('ren System.BACKUP System')
+	os.system('mv System.BACKUP System')
 	if os.path.isdir(System_Dir):
 		print('Restored! Exiting...')
 		sys.exit() # restored
@@ -88,7 +96,7 @@ try:
 except:
 	print('OrangeOS.Main.UpdateManager.Error.MissingComponentError: Component "zipfile" is missing and is needed to run OrangeOS Update Manager') # cannot import
 	print('A fail was detected! Restoring from backup...') # restore
-	os.system('ren System.BACKUP System')
+	os.system('mv System.BACKUP System')
 	if os.path.isdir(System_Dir):
 		print('Restored! Exiting...')
 		sys.exit() # restore
@@ -101,7 +109,7 @@ try:
 except:
 	print('OrangeOS.Main.UpdateManager.Error.FileExtractionError: Could not extract System.zip file!') # cannot
 	print('A fail was detected! Restoring from backup...') # restore backup
-	os.system('ren System.BACKUP System')
+	os.system('mv System.BACKUP System')
 	if os.path.isdir(System_Dir):
 		print('Restored! Exiting...')
 		sys.exit() # restored
@@ -110,8 +118,8 @@ except:
 		sys.exit() # cannot restore
 print('The upgrade was completed. ') # complete
 print('Removing backup...') 
-os.system('rd /s /q '+ System_Dir + '.BACKUP') # rm backup
+os.system('rm -rf '+ System_Dir + '.BACKUP/') # rm backup
 print('Removing temporary archive...')
-os.system('del /f /q System.zip') # rm system.zip file
+os.system('rm System.zip') # rm system.zip file
 print(' ====> On the first boot the user setup will launch which will help you set up OrangeOS even further by creating User Accounts that were present in an older installation. <====')
 print('All done!') # done!

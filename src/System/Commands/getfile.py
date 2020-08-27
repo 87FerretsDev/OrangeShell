@@ -54,13 +54,13 @@ def shellexec(cmdfile):
 		return
 	url_parse = urlparse(file)
 	requested_file = os.path.basename(url_parse.path)
-	if os.path.exists(ROOT_DIR + '\\..\\' + UserAcc):
-		if os.path.exists(ROOT_DIR + '\\..\\' + UserAcc + '\\' + str(requested_file)):
+	if os.path.exists(ROOT_DIR + '/../' + UserAcc):
+		if os.path.exists(ROOT_DIR + '/../' + UserAcc + '/' + str(requested_file)):
 			requested_file = requested_file + '.' + str(randint(0, 10000))
 		print('Saving to your home directory as: '+ str(requested_file))
-		download_url(file, ROOT_DIR + '\\..\\' + UserAcc + '\\' + str(requested_file))
-		if os.path.exists(ROOT_DIR + '\\..\\' + UserAcc + '\\' + str(requested_file)):
-			print(Fore.GREEN + Style.BRIGHT + 'Success! Your file is saved at ' + ROOT_DIR + '\\..\\' + UserAcc + '\\' + str(requested_file) + Style.RESET_ALL)
+		download_url(file, ROOT_DIR + '/../' + UserAcc + '/' + str(requested_file))
+		if os.path.exists(ROOT_DIR + '/../' + UserAcc + '/' + str(requested_file)):
+			print(Fore.GREEN + Style.BRIGHT + 'Success! Your file is saved at ' + ROOT_DIR + '/' + UserAcc + '/' + str(requested_file) + Style.RESET_ALL)
 		else:
 			print(Fore.YELLOW + Style.BRIGHT + 'Fail! Your file was not saved. Please check for any error output above' + Style.RESET_ALL)
 	else:
@@ -68,14 +68,14 @@ def shellexec(cmdfile):
 		# We place the requested file in OrangeSH_Cache if the user does not have a home directory because it is more organised if your files are in one place rather than
 		# your files being downloaded everywhere you go and being scattered over the filesystem.
 
-		if not os.path.exists(ROOT_DIR + '\\OrangeSH_Cache'):
-			os.system('mkdir ' + ROOT_DIR + '\\OrangeSH_Cache')
-		print('Your home directory is non-existent! You should look into the cause of that but your requested file will be saved in "' + ROOT_DIR + '\\OrangeSH_Cache".')
-		if os.path.exists(ROOT_DIR + '\\OrangeSH_Cache\\' + str(requested_file)):
+		if not os.path.exists(ROOT_DIR + '/OrangeSH_Cache'):
+			os.system('mkdir -p ' + ROOT_DIR + '/OrangeSH_Cache')
+		print('Your home directory is non-existent! You should look into the cause of that but your requested file will be saved in "' + ROOT_DIR + '/OrangeSH_Cache".')
+		if os.path.exists(ROOT_DIR + '/OrangeSH_Cache/' + str(requested_file)):
 			requested_file = requested_file + '.' + str(randint(0, 10000))
 		print('Saving file as: ' + str(requested_file))
-		download_url(file, ROOT_DIR + '\\OrangeSH_Cache\\' + str(requested_file))
-		if os.path.exists(ROOT_DIR + '\\OrangeSH_Cache\\' + str(requested_file)):
-			print(Fore.GREEN + Style.BRIGHT + 'Success! Your file is saved at ' + ROOT_DIR + '\\OrangeSH_Cache\\' + str(requested_file) + Style.RESET_ALL)
+		download_url(file, ROOT_DIR + '/OrangeSH_Cache/' + str(requested_file))
+		if os.path.exists(ROOT_DIR + '/OrangeSH_Cache/' + str(requested_file)):
+			print(Fore.GREEN + Style.BRIGHT + 'Success! Your file is saved at ' + ROOT_DIR + '/OrangeSH_Cache/' + str(requested_file) + Style.RESET_ALL)
 		else:
 			print(Fore.YELLOW + Style.BRIGHT + 'Fail! Your file was not saved. Please check for any error output above' + Style.RESET_ALL)

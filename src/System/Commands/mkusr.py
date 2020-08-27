@@ -31,7 +31,7 @@ def shellexec(cmdusername):
 	if username == "": # no args passed show err
 		print('Missing argument: USERNAME')
 		return
-	if os.path.isfile(ROOT_DIR + '\\UMS\\'+ username +'.shadow'): # if user shadow file exists...
+	if os.path.isfile(ROOT_DIR + '/UMS/'+ username +'.shadow'): # if user shadow file exists...
 		print('E: User "'+ username +'" exists!') # throw err and return
 		return
 	pswd = getpass.getpass('Password for ' + str(username) + '? ') # ask for a password
@@ -45,14 +45,14 @@ def shellexec(cmdusername):
 		passw = pswd.encode('utf8') # encode password input
 		hash_object = hashlib.sha512(passw) # hash psw
 		hex_dig = hash_object.hexdigest() # digest hash
-		f = open(ROOT_DIR + '\\UMS\\' + username + '.shadow', 'w+') # make shadow file
+		f = open(ROOT_DIR + '/UMS/' + username + '.shadow', 'w+') # make shadow file
 		f.write(hex_dig) # write hash to file
 		f.close() # exit
-		if os.path.isdir(ROOT_DIR + '\\..\\' + username): # if home dir exists, skip.
+		if os.path.isdir(ROOT_DIR + '/../' + username): # if home dir exists, skip.
 			print('Home directory exists. Skipping step...')
 		else: # else make one.
 			print('Making home directory ...')
-			os.system('mkdir ' + ROOT_DIR + '\\..\\' + username)
+			os.system('mkdir -p ' + ROOT_DIR + '/../' + username)
 		print('Operation Completed')
 	else:
 		time.sleep(5)

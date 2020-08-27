@@ -21,7 +21,7 @@ from __main__ import UserAcc, ROOT_DIR
 def shellexec(cmddir):
 	dir = cmddir.strip()
 	if dir == "": # if no args go back to homedir
-		os.chdir(ROOT_DIR + '\\..\\' + UserAcc)
+		os.chdir(ROOT_DIR + '/../' + UserAcc)
 		return
 	if os.path.isdir(dir): # make dir change if dir exists
 		os.chdir(dir)

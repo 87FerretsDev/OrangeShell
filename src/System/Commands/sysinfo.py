@@ -16,7 +16,7 @@
 from __main__ import ROOT_DIR
 def shellexec(spill):
 	try:
-		info_file = open(ROOT_DIR + '\\SYSTEM_INFO', "r")
+		info_file = open(ROOT_DIR + '/SYSTEM_INFO', "r")
 	except:
 		print('SysInfo file does not exist.')
 		return

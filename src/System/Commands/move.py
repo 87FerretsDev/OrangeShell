@@ -20,12 +20,12 @@ import os
 # movefile command
 def moveFile(INPUT, OUTPUT):
 	print('Moving source file "'+str(INPUT)+'" to destination "'+str(OUTPUT)+'"')
-	os.system('move '+ str(INPUT) +' '+ str(OUTPUT)) # move input to output
+	os.system('mv '+ str(INPUT) +' '+ str(OUTPUT)) # move input to output
 	
 # movedir command
 def moveDir(INPUT, OUTPUT):
 	print('Moving entire source directory "'+str(INPUT)+'" to destination "'+str(OUTPUT)+'"')
-	os.system('move '+ str(INPUT) +' '+ str(OUTPUT)) # move input to output
+	os.system('mv '+ str(INPUT) +' '+ str(OUTPUT)) # move input to output
 	
 # shellexec
 def shellexec(cmdMASHED_ARGS):

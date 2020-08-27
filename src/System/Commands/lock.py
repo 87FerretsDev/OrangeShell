@@ -24,11 +24,11 @@ except Exception as e:
 	print('Exception error whilst initilaising program! Details: '+ str(e))
 
 def shellexec(spill_random):
-	os.system('cls') # clear screen
+	os.system('clear') # clear screen
 	print(Style.BRIGHT + Fore.GREEN + "This shell is locked! "+ str(UserAcc) +" is logged in. Press any key to unlock!" + Style.RESET_ALL) # say in green text shell is locked
-	os.system('pause>nul') # wait for keypress
+	os.system('read') # wait for keypress
 	try:
-		sys.path.insert(1, ROOT_DIR + '\\UMS') # try and import login
+		sys.path.insert(1, ROOT_DIR + '/UMS') # try and import login
 		login_system = importlib.import_module('login') # import login
 		US_ACC = login_system.loginUsernameProvided(UserAcc) # use loginUsernameProvided function explained in login.py
 	except Exception as e: # cannot get to login, store exception in var e and print err below:

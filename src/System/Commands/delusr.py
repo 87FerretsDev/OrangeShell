@@ -34,7 +34,7 @@ def shellexec(cmdusername):
 	if username == "": # if username argument is nothing...
 		print('E: Missing argument, "USERNAME"') # throw err.
 		return
-	if os.path.isfile(ROOT_DIR + '\\UMS\\'+ username +'.shadow'): # check if shadow file for usr exists, essentially check if user exists
+	if os.path.isfile(ROOT_DIR + '/UMS/'+ username +'.shadow'): # check if shadow file for usr exists, essentially check if user exists
 		verify = input('Do you really want to remove '+ str(username) +'? Y/n: ') # ask if they want to remove
 		if verify == "y" or verify == "Y":
 			password = getpass.getpass("Existing password for "+ str(username) +"? ") # get psw to verify
@@ -42,17 +42,17 @@ def shellexec(cmdusername):
 			passw = password.encode('utf8') # encode input using utf8
 			hash_object = hashlib.sha512(passw) # hash encoded input
 			hex_dig = hash_object.hexdigest() # digest hash
-			f = open(ROOT_DIR + '\\UMS\\' + username + '.shadow', 'r') # open shadow file
+			f = open(ROOT_DIR + '/UMS/' + username + '.shadow', 'r') # open shadow file
 			actual_pass = f.readline() # get real hash
 			f.close()
 			if hex_dig == actual_pass: # if input hash == real hash
 				print('Validation Successful.')
 				print('Removing user entry...')
-				os.system('del /f /q ' + ROOT_DIR + '\\UMS\\'+ username +'.shadow')
+				os.system('rm ' + ROOT_DIR + '/UMS/'+ username +'.shadow')
 				print('Checking for home directory...')
-				if os.path.isdir(ROOT_DIR + '\\..\\' + username): # if home dir exists...
+				if os.path.isdir(ROOT_DIR + '/UMS/' + username): # if home dir exists...
 					print('Removing home directory ...')
-					os.system('rd /s /q '+ ROOT_DIR + '\\..\\' + username) # delete home dir
+					os.system('rm -rf '+ ROOT_DIR + '/UMS/' + username) # delete home dir
 				else:
 					print('Home directory does not exist. Ignoring.')
 				print('Operation complete.') # done!

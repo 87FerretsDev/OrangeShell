@@ -23,7 +23,7 @@ def overwrite():
 		ov_file.write(b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
 		i += 1
 	ov_file.close()
-	os.system('del /f /q _.tmp')
+	os.system('rm _.tmp')
 	print('Done!')
 
 def encryptFile(filename):
@@ -31,14 +31,14 @@ def encryptFile(filename):
 		print('Error: the file does not exist.')
 		return
 	print('Encrypting ... (key is tied to your account)')
-	os.system(ROOT_DIR + '\\SysTools\\7z.exe a '+ str(filename) +'.enc '+ str(filename) +' -p"' + str(PassW) +'" -y >nul')
+	os.system('7z a '+ str(filename) +'.enc '+ str(filename) +' -p"' + str(PassW) +'" -y > /dev/null')
 	print('Verifying...')
 	if not os.path.exists(str(filename) + '.enc'):
 		print('Error: the encrypted result could not be made!')
 		return
 	else:
 		print('Success! Deleting shadow...')
-		os.system('del /f /q '+ str(filename))
+		os.system('rm '+ str(filename))
 		print('Overwriting 10,000 times...')
 		overwrite()
 
@@ -47,28 +47,28 @@ def decryptFile(filename):
 		print('Error: the file does not exist.')
 		return
 	print('Decrypting ... (key is tied to your account)')
-	os.system(ROOT_DIR + '\\SysTools\\7z.exe x '+ str(filename) +' -p"' + str(PassW) +'" -y >nul')
+	os.system('7z x '+ str(filename) +' -p"' + str(PassW) +'" -y > /dev/null')
 	print('Verifying...')
 	if not os.path.exists(str(filename[:-4])):
 		print('Error: could not verify the file exists. Halting!')
 		return
 	else:
 		print('Success! Deleting shadow...')
-		os.system('del /f /q '+ str(filename))
+		os.system('rm '+ str(filename))
 
 def encryptDir(dirname):
 	if not os.path.exists(dirname):
 		print('Error: the directory does not exist.')
 		return
 	print('Encrypting ... (key is tied to your account)')
-	os.system(ROOT_DIR + '\\SysTools\\7z.exe a '+ str(dirname) +'.enc '+ str(dirname) +'\\ -p"' + str(PassW) +'" -y >nul')
+	os.system('7z a '+ str(dirname) +'.enc '+ str(dirname) +'/ -p"' + str(PassW) +'" -y > /dell/null')
 	print('Verifying...')
 	if not os.path.exists(str(dirname) + '.enc'):
 		print('Error: the encrypted result could not be made!')
 		return
 	else:
 		print('Success! Deleting shadow...')
-		os.system('rd /s /q '+ str(dirname))
+		os.system('rm -rf ./'+ str(dirname) + '/')
 		print('Overwriting 10,000 times...')
 		overwrite()
 
@@ -77,14 +77,14 @@ def decryptDir(dirname):
 		print('Error: the file does not exist.')
 		return
 	print('Decrypting ... (key is tied to your account)')
-	os.system(ROOT_DIR + '\\SysTools\\7z.exe x '+ str(dirname) +' -p"' + str(PassW) +'" -y >nul')
+	os.system('7z x '+ str(dirname) +' -p"' + str(PassW) +'" -y > /dev/null')
 	print('Verifying...')
 	if not os.path.exists(str(dirname[:-4])):
 		print('Error: could not verify the file exists. Halting!')
 		return
 	else:
 		print('Success! Deleting shadow...')
-		os.system('rd /s /q '+ str(dirname))
+		os.system('rm -rf ./'+ str(dirname) + '/')
 	
 def shellexec(MASHED_ARGS):
 	STRIPPED_ARGS = MASHED_ARGS.strip()

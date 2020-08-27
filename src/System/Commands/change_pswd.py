@@ -27,13 +27,13 @@ def shellexec(spill):
 	except:
 		print('E: Missing dependencies, hashlib or getpass.') # IF NOT INSTALLED, GIVE ERROR
 		return
-	if os.path.isfile(ROOT_DIR + '\\UMS\\'+ UserAcc +'.shadow'): 	# Check if user already exists
+	if os.path.isfile(ROOT_DIR + '/UMS/'+ UserAcc +'.shadow'): 	# Check if user already exists
 		password = getpass.getpass("Existing password for "+ str(UserAcc) +"? ") # Ask for existing password
 		print('Validating ...') 
 		passw = password.encode('utf8') # Encode input into UTF-8
 		hash_object = hashlib.sha512(passw) # Hash encoded string with SHA512
 		hex_dig = hash_object.hexdigest() # Digest hashed object
-		f = open(ROOT_DIR + '\\UMS\\' + UserAcc + '.shadow', 'r') # Open real shadow file
+		f = open(ROOT_DIR + '/UMS/' + UserAcc + '.shadow', 'r') # Open real shadow file
 		actual_pass = f.readline() # Get real hash
 		f.close()
 		if hex_dig == actual_pass:	# PSW Verification successfull
@@ -49,12 +49,12 @@ def shellexec(spill):
 			vpswd = getpass.getpass("Verify new password for "+ str(UserAcc) +": ") # VERIFY PASSWORD
 			if pswd == vpswd: # verify password was the same as entered password, continue
 				print('Deleting previous entry ...')
-				os.system('del /f /q ' + ROOT_DIR + '\\UMS\\' + UserAcc + '.shadow') # Delete the previous entry
+				os.system('rm ' + ROOT_DIR + '/UMS/' + UserAcc + '.shadow') # Delete the previous entry
 				print('Making new entry ...')
 				passw = pswd.encode('utf8')	# Encode new password
 				hash_object = hashlib.sha512(passw) # Hash new password
 				hex_dig = hash_object.hexdigest()	# Digest hash
-				f = open(ROOT_DIR + '\\UMS\\' + UserAcc + '.shadow', 'w+')	# Open shadow file in overwrite mode
+				f = open(ROOT_DIR + '/UMS/' + UserAcc + '.shadow', 'w+')	# Open shadow file in overwrite mode
 				f.write(hex_dig)	# Overwrite old hash with new hash
 				f.close()
 				print('Operation Completed.')

@@ -15,4 +15,4 @@
 # 	 The ORANGEShell Repo can be found here: https://87ferrets.ml/FTP/OrangeShell/
 import os
 def shellexec(spill):
-	os.system('cls')
+	os.system('clear')

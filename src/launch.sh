@@ -1,4 +1,7 @@
 #!/bin/bash
+echo -e "\nThis currently only works for distros that use 'dpkg' and 'apt', if you do not use any of these bewarned some stuff may not work"
+echo -e "\nSleeping for 5 seconds..."
+sleep 5
 
 no_encrypt() {
   DATE=`date +"%d-%b-%Y"`

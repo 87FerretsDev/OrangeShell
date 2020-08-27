@@ -21,6 +21,6 @@ from __main__ import ROOT_DIR
 
 # shellexec
 def shellexec(spill):
-	os.chdir(ROOT_DIR + '\\..\\UpdateManager') # cd into UpdateManager folder
+	os.chdir(ROOT_DIR + '/../UpdateManager') # cd into UpdateManager folder
 	os.system('python3 updater_main.py --version 2.0.0') # start the updatemanager and provide 1 argument : version (which is 1.0.0)
 	sys.exit(0)

@@ -21,7 +21,7 @@
   # IF NO ==> Your home directory will not be touched. NOTE: If your directory is encrypted
   # and you change this option to NO before decrypting, it will stay encrypted.
 
-  EncryptHome = NO
+  EncryptHome = YES
 
   # Remove OrangeSH_Cache folder on exit.
   # YES ==> The cache folder will be removed so it will save you space (it respawns on restart of OrangeShell)

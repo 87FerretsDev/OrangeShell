@@ -31,7 +31,7 @@ def shellexec(cmd_command):
 		return
 	if command == "--listall": # listall arg was given
 		print('Gathering command information...')
-		all_cmd_list = open(ROOT_DIR + '\\helpdb\\ALL_CMD.list',"r")
+		all_cmd_list = open(ROOT_DIR + '/helpdb/ALL_CMD.list',"r")
 		for line in all_cmd_list:
 			print(line.strip())
 		all_cmd_list.close()
@@ -39,7 +39,7 @@ def shellexec(cmd_command):
 	else:
 		print('Searching for a help file for that command...')
 		try:
-			helpdoc = open(ROOT_DIR + '\\helpdb\\' + str(command) + '.helpfile')
+			helpdoc = open(ROOT_DIR + '/helpdb/' + str(command) + '.helpfile')
 			print('Showing help documentation for: '+ str(command) + "\n") 
 			for line in helpdoc:
 				print(line.strip())

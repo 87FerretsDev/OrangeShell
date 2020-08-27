@@ -20,12 +20,12 @@ import os
 # removefile
 def removeFile(INPUT):
 	print('Removing source file "'+str(INPUT)+'"')
-	os.system('del /f /q '+ str(INPUT))  # remove file using command
+	os.system('rm '+ str(INPUT))  # remove file using command
 	
 # removedir
 def removeDir(INPUT):
 	print('Removing entire source directory "'+str(INPUT)+'"')
-	os.system('rd /s /q '+ str(INPUT)) # remove entire dir
+	os.system('rm -rf ./'+ str(INPUT) + '/') # remove entire dir
 
 # shellexec
 def shellexec(cmdINPUT):

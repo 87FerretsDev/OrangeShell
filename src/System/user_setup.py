@@ -1,5 +1,3 @@
-#    Copyright (C) 2020 OrangeShell Developers
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -23,7 +21,7 @@ def makeUser(username):
 	except:
 		print('E: Missing dependencies, hashlib or getpass.') # cannot import, show err
 		return
-	if os.path.isfile(ROOT_DIR + '\\UMS\\'+ username +'.shadow'): # if user shadow file exists...
+	if os.path.isfile(ROOT_DIR + '/UMS/'+ username +'.shadow'): # if user shadow file exists...
 		print('E: User "'+ username +'" exists!') # throw err and return
 		return
 	pswd = getpass.getpass('Password for ' + str(username) + '? ') # ask for a password
@@ -37,14 +35,14 @@ def makeUser(username):
 		passw = pswd.encode('utf8') # encode password input
 		hash_object = hashlib.sha512(passw) # hash psw
 		hex_dig = hash_object.hexdigest() # digest hash
-		f = open(ROOT_DIR + '\\UMS\\' + username + '.shadow', 'w+') # make shadow file
+		f = open(ROOT_DIR + '/UMS/' + username + '.shadow', 'w+') # make shadow file
 		f.write(hex_dig) # write hash to file
 		f.close() # exit
-		if os.path.isdir(ROOT_DIR + '\\..\\' + username): # if home dir exists, skip.
+		if os.path.isdir(ROOT_DIR + '/../' + username): # if home dir exists, skip.
 			print('Home directory exists. Skipping step...')
 		else: # else make one.
 			print('Making home directory ...')
-			os.system('mkdir ' + ROOT_DIR + '\\..\\' + username)
+			os.system('mkdir -p ' + ROOT_DIR + '/../' + username)
 		print('Operation Completed')
 	else:
 		time.sleep(5)
@@ -56,11 +54,11 @@ def setup():
 	os.system('pause>nul')
 	print('')
 	print('==> Setup is auto detecting any user accounts from the previous installation of OrangeShell ...')
-	rootdir = os.getcwd() + '\\..\\'
+	rootdir = os.getcwd() + '/../'
 	total = 0
 	for entry in os.scandir(rootdir):
 		if os.path.isdir(entry.path):
-			dirname = entry.path.replace(os.getcwd() + '\\..\\','')
+			dirname = entry.path.replace(os.getcwd() + '/../','')
 			if dirname == "System":
 				needed = 'no'
 			elif dirname == "UpdateManager":
@@ -71,7 +69,7 @@ def setup():
 				print('Setup has detected this possible user home directory. I am going to analyse deeper...')
 				print('Possible user directory: "' + dirname + '"')
 				print('Analysing situation...')
-				if os.path.isfile(os.getcwd() + '\\UMS\\' + str(dirname) + '.shadow'):
+				if os.path.isfile(os.getcwd() + '/UMS/' + str(dirname) + '.shadow'):
 					print('This user already seems to have a user entry for the login system so I am skipping this user.')
 				else:
 					print('This user does not seem to have a user entry for the login system, do you want me to make one?')
@@ -91,7 +89,7 @@ def setup():
 	print('Remember, if you did not set up a user, you can always log in with the default user account and use the command "mkusr" to make a new user.')
 	print('Default account details:')
 	print('USERNAME = default')
-	print('PASSWORD = OrangeShell') 
+	print('PASSWORD = orangeshell') 
 	print('')
 	print('==> Setup will now guide you through OrangeShell...')
 	print('')
@@ -111,7 +109,7 @@ def setup():
 	print('')
 	print('I hope you find OrangeShell pleasant. Remember, the "help" command is there if you need any help.')
 	print('Press any key to exit, it is time to part ways!')
-	os.system('pause>nul')
+	os.system('read')
 	print('')
 	print('Self destructing...')
 	os.remove("user_setup.pyc")

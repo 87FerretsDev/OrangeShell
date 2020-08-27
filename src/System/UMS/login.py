@@ -51,16 +51,16 @@ def loginUsernameProvided(username):		# Used in the LOCK feature, login but with
 		while ask: # Keep letting user retry until they get it right.
 			password = getpass.getpass(str(username) + "'s Password? ") # PSW PROMPT
 			print('Validating ...')
-			if os.path.exists(ROOT_DIR + '\\UMS\\' + username + '.shadow'): # Where user passwords are stored, hashed.
+			if os.path.exists(ROOT_DIR + '/UMS/' + username + '.shadow'): # Where user passwords are stored, hashed.
 				passw = password.encode('utf8') # Encode input with utf8
 				hash_object = hashlib.sha512(passw) # Hash input
 				hex_dig = hash_object.hexdigest()
-				f = open(ROOT_DIR + '\\UMS\\' + username + '.shadow', 'r') # Get real hash from file
+				f = open(ROOT_DIR + '/UMS/' + username + '.shadow', 'r') # Get real hash from file
 				actual_pass = f.readline()
 				f.close()
 				if hex_dig == actual_pass: # If input hash == real hash, correct psw
-					os.system('cls')
-					if password == "OrangeShell":
+					os.system('clear')
+					if password == "orangeshell":
 						print(Style.BRIGHT + Fore.YELLOW + 'Your password is the default OrangeShell password. Consider changing it using change_pswd.' + Style.RESET_ALL) # Warn user if psw is "OrangeShell"
 					return username, password
 				else:
@@ -93,48 +93,48 @@ def login():
 			username = input('Username? ')
 			password = getpass.getpass(str(username) + "'s Password? ")
 			print('Validating ...')
-			if os.path.exists(ROOT_DIR + '\\UMS\\' + username + '.shadow'):
+			if os.path.exists(ROOT_DIR + '/UMS/' + username + '.shadow'):
 				passw = password.encode('utf8')
 				hash_object = hashlib.sha512(passw)
 				hex_dig = hash_object.hexdigest()
-				f = open(ROOT_DIR + '\\UMS\\' + username + '.shadow', 'r')
+				f = open(ROOT_DIR + '/UMS/' + username + '.shadow', 'r')
 				actual_pass = f.readline()
 				f.close()
 				if hex_dig == actual_pass:
 					if EncryptHomeStatus == "YES":
-						if not os.path.isdir(ROOT_DIR + '\\..\\' + username):
+						if not os.path.isdir(ROOT_DIR + '/../' + username):
 							print('Decrypting home directory.')
-							HOMELOCd = ROOT_DIR + '\\..\\' + username + '.enc'
+							HOMELOCd = ROOT_DIR + '/../' + username + '.enc'
 							if not os.path.isfile(HOMELOCd):
 								print('Fail --> ENC file doesnt exist.')
-								if password == "OrangeShell":
+								if password == "orangeshell":
 									print(Style.BRIGHT + Fore.YELLOW + 'Your password is the default OrangeShell password. Consider changing it using change_pswd.' + Style.RESET_ALL)
 								return username, password
 							else:
 								try:
 									
-									HOMELOC = os.getcwd() + '\\..\\'
+									HOMELOC = os.getcwd() + '/../'
 									os.chdir(HOMELOC)
-									os.system(ROOT_DIR + '\\SysTools\\7z.exe x ' + HOMELOCd + ' -p"'+ password +'" -y > nul')
+									os.system('7z x ' + HOMELOCd + ' -p"'+ password +'" -y > /dev/null')
 									if os.path.isdir(HOMELOC + username):
 										print('Success!')
-										os.system('del /f /q '+ username +'.enc')
-										if password == "OrangeShell":
+										os.system('rm '+ username +'.enc')
+										if password == "orangeshell":
 											print(Style.BRIGHT + Fore.YELLOW + 'Your password is the default OrangeShell password. Consider changing it using change_pswd.' + Style.RESET_ALL)
 										return username, password
 									else:
 										print('Fail! Continuing anyway...')
-										if password == "OrangeShell":
+										if password == "orangeshell":
 											print(Style.BRIGHT + Fore.YELLOW + 'Your password is the default OrangeShell password. Consider changing it using change_pswd.' + Style.RESET_ALL)
 										return username, password
 								except Exception as e:
 									print('Fail ('+ str(e) +'). Continuing anyway...')
-									if password == "OrangeShell":
+									if password == "orangeshell":
 										print(Style.BRIGHT + Fore.YELLOW + 'Your password is the default OrangeShell password. Consider changing it using change_pswd.' + Style.RESET_ALL)
 									return username, password
 						else:
 							print('Resuming...')
-							if password == "OrangeShell":
+							if password == "orangeshell":
 								print(Style.BRIGHT + Fore.YELLOW + 'Your password is the default OrangeShell password. Consider changing it using change_pswd.' + Style.RESET_ALL)
 							return username, password
 					else:

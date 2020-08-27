@@ -39,5 +39,5 @@ def shellexec(cmdfilename):	# Shellexec file
 		print('Reading line ' + str(linenum) + ' of ' + str(totallinenum) + ' ...', end="\r") # Edit line as it reads more.
 		content += line # Add lines to content
 	print("\nThe contents of this file is ready to be displayed. Press any key to display it") 
-	os.system('pause>nul') # Pause until key pressed
+	os.system('read') # Pause until key pressed
 	print("\n" + str(content) + "\n") # SHOW CONTENT

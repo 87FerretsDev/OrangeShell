@@ -20,12 +20,12 @@ import os
 # Copyfile function
 def copyFile(INPUT, OUTPUT):
 	print('Copying source file "'+str(INPUT)+'" to destination "'+str(OUTPUT)+'"')
-	os.system('copy '+ str(INPUT) +' '+ str(OUTPUT)) # copy source to destination using windows copy cmd
+	os.system('cp '+ str(INPUT) +' '+ str(OUTPUT)) # copy source to destination using windows copy cmd
 	
 # copydir function
 def copyDir(INPUT, OUTPUT):
 	print('Copying entire source directory "'+str(INPUT)+'" to destination "'+str(OUTPUT)+'"')
-	os.system('xcopy /e /q '+ str(INPUT) +' '+ str(OUTPUT)) # copy entire directory to destination using windows xcopy cmd
+	os.system('cp -avr '+ str(INPUT) +' '+ str(OUTPUT)) # copy entire directory to destination using windows xcopy cmd
 	
 # main shell
 def shellexec(cmdMASHED_ARGS):

@@ -21,8 +21,8 @@ from __main__ import UserAcc, PassW, EncryptHomeStatus, ROOT_DIR, RemoveCacheSta
 def shellexec(spill):
 	if RemoveCacheStatus == "YES":
 		print('Removing Cache...')
-		os.system('rd /s /q ' + ROOT_DIR + '\\OrangeSH_Cache')
-		if os.path.exists(ROOT_DIR + '\\OrangeSH_Cache'):
+		os.system('rm -rf ./' + ROOT_DIR + '/OrangeSH_Cache/')
+		if os.path.exists(ROOT_DIR + '/OrangeSH_Cache'):
 			print('Cache could not be removed')
 		else:
 			print('Cache removed')
@@ -31,25 +31,24 @@ def shellexec(spill):
 	if EncryptHomeStatus == "YES":
 		print('Trying to encrypt home directory before exiting... (it will be auto decrypted at login)')
 		try:
-			os.chdir(ROOT_DIR + '\\SysTools')
-			HOMEDIR = ROOT_DIR + '\\..\\' + str(UserAcc)
-			HOMELOC = ROOT_DIR + '\\..\\'
+			HOMEDIR = ROOT_DIR + '/../' + str(UserAcc)
+			HOMELOC = ROOT_DIR + '/../'
 			if not os.path.isdir(HOMEDIR):
 				print('E: Home directory non existent. Exiting...')
 				sys.exit(0)
-			os.system('7z a '+ HOMELOC + UserAcc + '.enc ' + HOMELOC + UserAcc +'\\ -p"' + PassW + '" -y > nul')
+			os.system('7z a '+ HOMELOC + UserAcc + '.enc ' + HOMELOC + UserAcc +'\\ -p"' + PassW + '" -y > /dev/null')
 			print('Verifying encryption...')
 			os.chdir(HOMELOC)
 			if os.path.isfile(UserAcc + '.enc'):
 				print('Success!')
-				os.system('rd /s /q '+ UserAcc)
+				os.system('rm -rf ./'+ UserAcc + '/')
 				overwrite = open('_.tmp',"w+")
 				overwrite.close()
 				overwrite = open('_.tmp', "a")
-				for i in range(1000):
+				for i in range(10000):
 					overwrite.write(str(i) + '-- /x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00/x00')
 				overwrite.close()
-				os.system('del /f /q _.tmp')
+				os.system('rm _.tmp')
 				sys.exit(0)
 			else:
 				print('Fail!')
