@@ -1,5 +1,14 @@
 #!/bin/bash
-echo -e "\nThis currently only works for distros that use 'dpkg' and 'apt', if you do not use any of these bewarned some stuff may not work"
+
+if [[ $1 == "--override-checks" ]]; then
+  echo "Overriding checks for p7zip-full..."
+  OVERRIDE="y"
+fi
+
+if [[ $OVERRIDE != "y" ]]; then
+  echo -e "\nThis currently only works for distros that use 'dpkg' and 'apt', if you do not use any of these bewarned some stuff may not work"
+  echo -e "Use --override-checks argument to override this if you know you have the package and are using a different package manager"
+fi
 echo -e "\nSleeping for 5 seconds..."
 sleep 5
 
@@ -39,19 +48,20 @@ no_encrypt() {
 }
 
 echo "Starting shell..."
-echo -e "\np7zip-full must be installed to use encryption. Checking for that now..."
+if [[ $OVERRIDE != "y" ]]; then
+  echo -e "\np7zip-full must be installed to use encryption. Checking for that now..."
 
-if ! dpkg-query -l p7zip-full > /dev/null; then
-   echo -e "p7zip-full not found! \nEnter sudo password to install, else press CTRL+C to cancel."
-    sudo apt-get install p7zip-full
-    echo -e "\nRechecking..."
-    if ! dpkg-query -l p7zip-full > /dev/null; then
-      no_encrypt
-    fi
-else
-    echo -e "\np7zip-full Installed!"
+  if ! dpkg-query -l p7zip-full > /dev/null; then
+    echo -e "p7zip-full not found! \nEnter sudo password to install, else press CTRL+C to cancel."
+      sudo apt-get install p7zip-full
+      echo -e "\nRechecking..."
+      if ! dpkg-query -l p7zip-full > /dev/null; then
+        no_encrypt
+      fi
+  else
+      echo -e "\np7zip-full Installed!"
+  fi
 fi
-
 echo -e "\nLaunching shell!"
 cd System
 python3 shell.py

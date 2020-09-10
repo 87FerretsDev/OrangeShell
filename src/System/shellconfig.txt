@@ -14,13 +14,7 @@
 
   # Encrypting your home directory.
 
-  # IF YES ==> The command "exit" will auto encrypt your home directory and it will be decrypted
-  # at logon automatically if it is already encrypted. The same does NOT apply to the command
-  # "lock"
-
-  # IF NO ==> Your home directory will not be touched. NOTE: If your directory is encrypted
-  # and you change this option to NO before decrypting, it will stay encrypted.
-
+  # Encrypts on command "exit", decrypt on log on automatically.
   EncryptHome = YES
 
   # Remove OrangeSH_Cache folder on exit.
